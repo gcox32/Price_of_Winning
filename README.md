@@ -1,4 +1,4 @@
-<img src="../brand logo.png"></a>
+<img src="brand logo.png" width="100" height="100"></a>
 
 # The Price of Winning
 Repo for R Project on Money and College Football
