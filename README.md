@@ -1,49 +1,37 @@
-<img src="brand logo.png" width="100" height="100"></a>
+<img src="assets/brand logo.png" width="100" height="100"></a>
 
-# The Price of Winning
+# The Price of Winning: The True Cost of Your Bad Football Team
 Repo for R Project on Money and College Football
 
 ## Table of Contents
 
+- [The Problem](#theproblem)
 - [The Data](#thedata)
-- [The Variables](#thevariables)
-- [The Libraries](#thelibraries)
+- <a href="https://github.com/gcox32/Price_of_Winning/blob/master/Features.txt">The Features</a>
+- [The Libraries](#the-r-libraries)
 - [Acknowledgements](#acknowledgements)
+
+## The Problem
+
+    There is and has been across the last decade an arms race in the world of college football for the biggest and the best team/coach/stadium. And why shouldn’t there be? The allure of national television exposure or of the supposed millions in revenue ought to be enough to sway any small university to fund a team. However, revenue data at division I programs show us that only the rich are getting richer, and the vast majority of programs are actually bleeding money. To make this worse, these latter schools are funding the difference by subsidizing their football programs via student fees. It follows (and the numbers show) that schools that are receiving the least revenue from things like ticket sales (i.e. schools where the students seemingly care the least) are subsidizing their programs through the most substantial student fees.
+
+    Possible problems:
+
+        - to what degree is this an issue?
+        - How many schools are both a) losing money through their football program and b) subsidizing their program through student fees?
+        - What do student fees (as a portion of student tuition) look like across schools?
+        - how does win-loss record predict:
+            - revenue of the football program
+            - cost of student tuition
+            - percentage of program revenue subsidized by student fees
+        - how does percentage subsidized predict tuition cost
+        - how does percentage subsidized predict revenue of the football program
+            - percentage of tuition towards student fees
+        - can win-loss record predict the viability (profitability) of a program?
 
 ## The Data
 
-## The Variables
-
-> There are 33 variables across the combined data tables. The distinctions between revenue variables and between expense variables is important to understand:
-
-- **instnm:** Institution Name
-- **abbrev_name:** less formal University Name
-- **year:** year
-- **full_time_enrollment:** 2013-2014 enrollment for all full-time undergraduate and graduate students from Ipeds for all data; latest data available
-- **ticket_sales:** Per NCAA Revenue/Expense form: Includes revenue received for sales of admissions to athletics events. Include ticket sales to the  public, faculty and students, and money received for shipping and handling of tickets. Do not include ticket sales for conference and national tournaments that are pass-through transactions.
-- **student_fees:** Per NCAA Revenue/Expense form: Includes student fees assessed and restricted for support of intercollegiate athletics.
-- **direct_state_govt_support:** Per NCAA Revenue/Expense form: Includes state, municipal, federal and other government appropriations made in support of the operations of intercollegiate athletics. This amount includes funding specifically earmarked to the athletics department by government agencies for which the institution has no discretion to reallocate. Any state or other government support appropriated to the university, for which the university determines the dollar allocation to the athletics department shall be reported in Direct Institutional Support (item 7).
-- **direct_institutional_support:** Per NCAA Revenue/Expense form: Includes value of institutional resources for the current operations of intercollegiate athletics, as well as all unrestricted funds allocated to the athletics department by the university (e.g., state funds, tuition, tuition waivers and transfers). Also include Federal Work Study support for student workers employed by athletics. Report actual amounts and do not net with Transfers to Institution (category 37).
-- **indirect_facil_admin_support:** Per NCAA Revenue/Expense form: Includes value of facilities and services provided by the institution not charged to athletics. This support  may include an allocation for institutional administrative cost, facilities and maintenance, grounds and field maintenance, security, risk management, utilities, depreciation and debt service. If your institution does not currently track indirect institutional support, consult your business office for a reasonable allocation. If counted here, include offsetting expenditure equal in value in Expense Category 32 (Indirect Facilities and Administrative Support).
-- **subsidy:** Calculated using all raw fields, as follows: Student Fees PLUS Direct Institutional Support PLUS Direct State Govt Support PLUS Indirect Facil Admin Support
-
-- **ncaa_distributions:** Per NCAA Revenue/Expense form: Includes revenue received from participation in bowl games, tournaments and all NCAA distributions. This category includes amounts received for direct participation or through a sharing arrangement with an athletics conference, including shares of conference television agreements. If known by sport, report as such. Include any payments received from the NCAA for hosting a championship (permissible to include in Revenue Not Related to Specific Teams). 
-- **royalties:** Per NCAA Revenue/Expense form: Includes all revenue from corporate sponsorships, licensing, sales of advertisements, trademarks and royalties. An allocation will be necessary to distinguish revenues generated by athletics versus the university if payments are combined. Include the value of in-kind products and services provided as part of the sponsorship (e.g., equipment, apparel, soft drinks, water and isotonic products).
-- **tv_revenue:** Per NCAA Revenue/Expense form: Includes institutional revenue received directly for radio and television broadcasts, Internet and e-commerce rights received through institution-negotiated contracts.
-- **endowments:** Per NCAA Revenue/Expense form: Includes endowment spending policy distribution and other investment income in support of the athletics department. These categories include only restricted investment and endowment income for the operations of intercollegiate athletics; institutional allocations of income from unrestricted endowments qualify as Direct Institutional Support.
-- **athletic_revenues:** Per NCAA Revenue/Expense form: Includes ticket sales; student fees; guarantee revenue; contributions; compensation and benefits provided by a third party; direct state or other government support; direct institutional support; indirect facilities and adminstrative support;NCAA/Conference Distributions including all tournament revenue; Broadcast, TV, Radio & Internet Rights; Program Sales, Concessions, Novelty Sales, and Parking; Royalties, Licensing, Advertisements and Sponsorships; Sports Camp Revenues; Endowment and Investment Income; Other Operating Revenue
-- **subsidyproportion:** Calculated using all raw fields, as follows: Subsidy DIVIDED BY Athletic revenues 
-
-- **other_revenues:** Calculated using all raw fields, as follows: External revenue MINUS (NCAA Distributions PLUS Royalties PLUS TV Revenue PLUS Ticket Sales)
-
-- **athletic_expenses:** Per NCAA Revenue/Expense form: Includes athletic student aid; guarantee expenses; coaching salaries, benefitsm and bonuses paid by the university and related entities; coaching other compensation and benefits paid by a third party; support staff/adminstrative salaries, benefits and bonuses paid by the university and related entities; support staff/administrative other compensationand benefits paid by a third party; severance payments; recruiting; team travel; equipment, uniforms and supplies; game expenses; fundraising, marketing, and promotion; sports camp expenses; direct facilities, maintenance and rental; spirit groups; indirect facilities and adminstrative support; medical expenses and medical insurance; memberships and dues; other operating expenses
-- **intitutional_subsidy:** Calculated using all raw fields, as follows: Direct Institutional Support PLUS Indirect Facil Admin Support 
-- **institutionalsubsidy_proportion:** Calculated using all raw fields, as follows: Institutional Subsidy DIVIDED BY Athletic revenues
-- **net_revenue:** Calculated using all raw fields, as follows: Athletic revenues MINUS Athletic expenses
-- **net_revenue_before_subsidy:** Calculated using all raw fields, as follows: Net revenue MINUS Subsidy
-- **external_revenue:** Calculated using all raw fields, as follows: Athletic revenues MINUS Subsidy
-
-- **instate_tuition:** 2014-2015 In-state tuition 
+The dataset with win-loss records is pulled from 4 different year specific tables via <a href="teamrankings.com">teamrankings.com</a> and the revenue and subsidy dataset via <a href="http://projects.huffingtonpost.com/projects/ncaa/reporters-note">Huffington Post</a>. The former set holds 5 tables (1 per year) and has roughly 130 records each. The latter dataset holds 1,015 records with 49 variables each. Both sets are in “.xlsx” formats.
 
 ## The R Libraries
 
